@@ -1,39 +1,41 @@
 using UnityEngine;
-
-public class SwapTools : MonoBehaviour
+namespace Old
 {
-    [Header("Префабы инструментов")]
-    [SerializeField] private GameObject[] toolPrefabs; 
-
-    [Header("Текущие инструменты на сцене")]
-    [SerializeField] private GameObject[] currentTools;
-
-    public void Change()
+    public class SwapTools : MonoBehaviour
     {
-        if (toolPrefabs == null || toolPrefabs.Length == 0 || currentTools == null) return;
+        [Header("Префабы инструментов")]
+        [SerializeField] private GameObject[] toolPrefabs;
 
-        for (int i = 0; i < currentTools.Length; i++)
+        [Header("Текущие инструменты на сцене")]
+        [SerializeField] private GameObject[] currentTools;
+
+        public void Change()
         {
-            GameObject currentTool = currentTools[i];
-            if (currentTool == null) continue;
+            if (toolPrefabs == null || toolPrefabs.Length == 0 || currentTools == null) return;
 
-            Transform parent = currentTool.transform.parent;
-            Vector3 localPos = currentTool.transform.localPosition;
-            Quaternion localRot = currentTool.transform.localRotation;
-
-            GameObject newPrefab;
-            do
+            for (int i = 0; i < currentTools.Length; i++)
             {
-                newPrefab = toolPrefabs[Random.Range(0, toolPrefabs.Length)];
-            } while (newPrefab.name == currentTool.name && toolPrefabs.Length > 1);
+                GameObject currentTool = currentTools[i];
+                if (currentTool == null) continue;
 
-            Destroy(currentTool);
+                Transform parent = currentTool.transform.parent;
+                Vector3 localPos = currentTool.transform.localPosition;
+                Quaternion localRot = currentTool.transform.localRotation;
 
-            GameObject newTool = Instantiate(newPrefab, parent);
-            newTool.transform.localPosition = localPos;
-            newTool.transform.localRotation = localRot;
+                GameObject newPrefab;
+                do
+                {
+                    newPrefab = toolPrefabs[Random.Range(0, toolPrefabs.Length)];
+                } while (newPrefab.name == currentTool.name && toolPrefabs.Length > 1);
 
-            currentTools[i] = newTool;
+                Destroy(currentTool);
+
+                GameObject newTool = Instantiate(newPrefab, parent);
+                newTool.transform.localPosition = localPos;
+                newTool.transform.localRotation = localRot;
+
+                currentTools[i] = newTool;
+            }
         }
     }
 }

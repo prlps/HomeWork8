@@ -1,32 +1,35 @@
 using UnityEngine;
 
-public class CloudController : MonoBehaviour
+namespace Old
 {
-    [SerializeField] private Transform[] m_people;
-    [SerializeField] private float m_speed = 2f;
-
-    private int m_index = -1;
-    private Vector3 m_target;
-    private bool m_isMoving;
-
-    public void MoveNext()
+    public class CloudController : MonoBehaviour
     {
-        m_index = (m_index + 1) % m_people.Length;
+        [SerializeField] private Transform[] m_people;
+        [SerializeField] private float m_speed = 2f;
 
-        m_target = m_people[m_index].position;
-        m_target.y = transform.position.y;
+        private int m_index = -1;
+        private Vector3 m_target;
+        private bool m_isMoving;
 
-        m_isMoving = true;
-    }
+        public void MoveNext()
+        {
+            m_index = (m_index + 1) % m_people.Length;
 
-    private void Update()
-    {
-        if (!m_isMoving)
-            return;
+            m_target = m_people[m_index].position;
+            m_target.y = transform.position.y;
 
-        transform.position = Vector3.Lerp(transform.position, m_target, m_speed * Time.deltaTime);
+            m_isMoving = true;
+        }
 
-        if (Vector3.SqrMagnitude(transform.position - m_target) < 0.01f)
-            m_isMoving = false;
+        private void Update()
+        {
+            if (!m_isMoving)
+                return;
+
+            transform.position = Vector3.Lerp(transform.position, m_target, m_speed * Time.deltaTime);
+
+            if (Vector3.SqrMagnitude(transform.position - m_target) < 0.01f)
+                m_isMoving = false;
+        }
     }
 }
