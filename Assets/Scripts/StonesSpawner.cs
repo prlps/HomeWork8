@@ -4,10 +4,10 @@ namespace Golf
 {
     public class StonesSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject[] m_prefabs;
+        [SerializeField] private StoneCollosionLog[] m_prefabs;
         [SerializeField] private Transform m_spawnPoint;
 
-        public void Spawn()
+        public StoneCollosionLog Spawn()
         {
             if (m_prefabs == null || m_prefabs.Length == 0) return;
             if (m_spawnPoint == null) return;

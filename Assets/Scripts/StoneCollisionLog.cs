@@ -1,22 +1,39 @@
+using System;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 namespace Golf
 {
-    public class StoneCollisionLog : MonoBehaviour
+    public class StoneCollosionLog : MonoBehaviour
     {
-        private void OnCollisionEnter(Collision collision)
+        //private void OnCollisionEnter(Collision collision)
+        //{
+        //    if (collision.collider.CompareTag("Ground"))
+        //    {
+        //        Debug.Log($"{name} Ground");
+        //    }
+        //    else if (collision.collider.CompareTag("Stick"))
+        //    {
+        //        Debug.Log($"{name} Stick");
+        //    }
+        //    else
+        //    {
+        //        Debug.Log($"{name} collission with {collision.collider.name}");
+        //    }
+        //}
+
+        public event Action<StoneCollosionLog> Hit;
+        public event Action<StoneCollosionLog> Missed;
+
+        private void OnCollisionEnter(Collision other)
         {
-            if (collision.collider.CompareTag("Ground"))
+            if (other.gameObject.GetComponent<Stick>())
             {
-                Debug.Log($"{name} столкнулся с землей!");
-            }
-            else if (collision.collider.CompareTag("Stick"))
-            {
-                Debug.Log($"{name} столкнулся с клюшкой!");
+                Hit?.Invoke(this);
             }
             else
             {
-                Debug.Log($"{name} столкнулся с {collision.collider.name}");
+                Missed?.Invoke(this);
             }
         }
     }
