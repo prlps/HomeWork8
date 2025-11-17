@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7898364671376626608}
   - component: {fileID: -5980490613096605684}
   - component: {fileID: 2080870497638907154}
-  - component: {fileID: 5627981490894103388}
+  - component: {fileID: 5953507953322207317}
   m_Layer: 0
   m_Name: Stone 01
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7288247410617277592}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 87.906, y: 23.919, z: 61.076}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -0.09, y: -0.09, z: -0.09}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -141,7 +141,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6f39d587bca97ae4a8204a6d6ad5c9b0, type: 3}
---- !u!114 &5627981490894103388
+--- !u!114 &5953507953322207317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,6 +150,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7288247410617277592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e980c3cc306bbcb4a9e321d730532063, type: 3}
+  m_Script: {fileID: 11500000, guid: 810f48f1f853ef74faeba4445b550aae, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Golf.StoneCollisionLog
+  m_EditorClassIdentifier: Assembly-CSharp::Golf.Stone

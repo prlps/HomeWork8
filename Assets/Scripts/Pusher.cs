@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class Pusher : MonoBehaviour
+namespace Golf
 {
-    public float pushForce = 15f;
-
-    void OnCollisionEnter(Collision collision)
+    public class Pusher : MonoBehaviour
     {
-        Rigidbody rb = collision.rigidbody;
+        public float pushForce = 15f;
 
-        if (rb != null && !rb.isKinematic)
+        private void OnCollisionEnter(Collision collision)
         {
-            Vector3 pushDirection = collision.contacts[0].point - transform.position;
-            pushDirection = pushDirection.normalized;
+            Rigidbody rb = collision.rigidbody;
 
-            rb.AddForce(pushDirection * pushForce, ForceMode.VelocityChange);
+            if (rb != null && !rb.isKinematic)
+            {
+                Vector3 pushDirection = collision.contacts[0].point - transform.position;
+                pushDirection = pushDirection.normalized;
+
+                rb.AddForce(pushDirection * pushForce, ForceMode.VelocityChange);
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Golf
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private StonesSpawner m_stoneSpawner;
+        [SerializeField] private StoneSpawner m_stoneSpawner;
 
         private void Update()
         {
