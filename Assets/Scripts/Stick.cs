@@ -10,6 +10,7 @@ namespace Golf
         [SerializeField] private float m_maxAngleZ = 30f;
         [SerializeField][Min(0)] private float m_speed = 90f;
 
+        private bool m_isDown;
         private Vector3 m_lastPointPosition;
         private Vector3 m_direction;
 
@@ -39,6 +40,8 @@ namespace Golf
             {
                 m_direction = (m_point.position - m_lastPointPosition).normalized;
                 m_lastPointPosition = m_point.position;
+
+                m_isDown = false;
             }
         }
 
@@ -54,9 +57,19 @@ namespace Golf
                 var rb = stone.GetComponent<Rigidbody>();
                 if (rb != null && !rb.isKinematic)
                 {
-                    rb.AddForce(m_power * m_direction, ForceMode.Force);
+                    stone.AddForce(m_power * m_direction);
                 }
             }
         }
+
+        internal void Execute()
+        {
+            
+        }
+
+        public void Down() => m_isDown = true;
+
+        public void Up() => m_isDown = false;
+
     }
 }

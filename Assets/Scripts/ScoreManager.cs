@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 namespace Golf
 {
@@ -7,6 +8,8 @@ namespace Golf
     {
         [SerializeField] private TMP_Text scoreText;
         private int score = 0;
+
+        public event Action<int> ScoreChanged;
 
         public void AddPoints(int points)
         {

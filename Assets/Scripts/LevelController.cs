@@ -45,8 +45,7 @@ namespace Golf
 
         private void OnHitStone(Stone stone)
         {
-            stone.Hit -= OnHitStone;
-            stone.Missed -= OnMissed;
+            UnsubscribleStone(stone);
 
             m_currentHitCount++;
             scoreManager?.AddPoints(1);
@@ -61,8 +60,7 @@ namespace Golf
 
         private void OnMissed(Stone stone)
         {
-            stone.Hit -= OnHitStone;
-            stone.Missed -= OnMissed;
+            UnsubscribleStone(stone);
 
             m_currentMissedCount--;
             Debug.Log("Missed left: " + m_currentMissedCount);
@@ -79,6 +77,12 @@ namespace Golf
         {
             Time.timeScale = 1f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    
+        private void UnsubscribleStone(Stone stone)
+        {
+            stone.Hit -= OnHitStone;
+            stone.Missed -= OnMissed;
         }
     }
 }
